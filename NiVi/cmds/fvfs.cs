@@ -13,6 +13,8 @@ namespace NiVi.Builtin
         public fvfs(String name) : base(name) { }
         public override String execute(String[] args)
         {
+            string dir = @"0:\";
+            var input = Console.ReadLine();
             String response = "";
             switch (args[0])
             {
@@ -67,6 +69,60 @@ namespace NiVi.Builtin
                         break;
                     }
                     break;
+
+                case "cd":
+                    try
+                    {
+                        Directory.SetCurrentDirectory(@"0:\" + input.Remove(0, 3));
+                        dir = (@"0:\" + input.Remove(0, 3));
+                    }
+                    catch (Exception ex)
+                    {
+                        response = ex.ToString();
+                        break;
+                    }
+                    break;
+
+                case "mv":
+                    string oldPath = args[0];
+                    string newPath = args[1];
+
+                    try
+                    {
+                        if (File.Exists(oldPath))
+                        {
+                            if (File.Exists(newPath))
+                            {
+                                Console.WriteLine($"Error: File {newPath} already exists.");
+                                break;
+                            }
+
+                            if (Directory.Exists(newPath))
+                            {
+                                newPath = Path.Combine(newPath, Path.GetFileName(oldPath));
+                            }
+
+                            byte[] fileContent = File.ReadAllBytes(oldPath);
+
+                            File.WriteAllBytes(newPath, fileContent);
+
+                            File.Delete(oldPath);
+
+                            Console.WriteLine($"Moved file from {oldPath} to {newPath}");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Error: File {oldPath} does not exist.");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error: {e.Message}");
+                    }
+
+                    break;
+
+
                 case "cat":
                     try
                     {
