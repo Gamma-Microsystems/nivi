@@ -19,7 +19,6 @@ namespace NiVi.Builtin
             Console.WriteLine("fvfs touch <PATH> : creates a file");
             Console.WriteLine("fvfs rm <PATH> : removes a file");
             Console.WriteLine("fvfs rmd <PATH> : removes a directory");
-            Console.WriteLine("fvfs write <PATH> : simple writer");
             Console.WriteLine("fvfs cat <PATH> : reads a file");
             Console.WriteLine("ls : shows directories and files");
             //Console.WriteLine("cd : changes directory");

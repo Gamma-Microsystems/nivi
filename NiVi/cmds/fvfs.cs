@@ -67,42 +67,6 @@ namespace NiVi.Builtin
                         break;
                     }
                     break;
-                case "write":
-                    try
-                    {
-                        FileStream fs = (FileStream)Sys.FileSystem.VFS.VFSManager.GetFile(args[1]).GetFileStream();
-
-                        if (fs.CanWrite)
-                        {
-
-                            int ctr = 0;
-                            StringBuilder sb = new StringBuilder();
-
-                            foreach (String s in args)
-                            {
-                                if (ctr > 1)
-                                    sb.Append(s + ' ');
-                                ++ctr;
-                            }
-                            String txt = sb.ToString();
-                            Byte[] data = Encoding.ASCII.GetBytes(txt.Substring(0, txt.Length - 1));
-
-                            fs.Write(data, 0, data.Length);
-                            fs.Close();
-                        }
-                        else
-                        {
-                            response = "Unable to write";
-                            break;
-                        }
-                    }
-
-                    catch (Exception ex)
-                    {
-                        response = ex.ToString();
-                        break;
-                    }
-                    break;
                 case "cat":
                     try
                     {
