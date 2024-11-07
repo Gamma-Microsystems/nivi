@@ -21,8 +21,8 @@ namespace NiVi.Builtin
             Console.WriteLine("fvfs rmd <PATH> : removes a directory");
             Console.WriteLine("fvfs cat <PATH> : reads a file");
             Console.WriteLine("ls : shows directories and files");
-            Console.WriteLine("fvfs cd <PATH>: moves a file to diffirent path");
-            //Console.WriteLine("cd : changes directory");
+            Console.WriteLine("fvfs mv <PATH> : moves a file to diffirent path");
+            //Console.WriteLine("fvfs cd <PATH >: changes directory");
             return "";
         }
     }

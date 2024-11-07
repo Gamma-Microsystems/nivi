@@ -73,8 +73,15 @@ namespace NiVi.Builtin
                 case "cd":
                     try
                     {
-                        Directory.SetCurrentDirectory(@"0:\" + input.Remove(0, 3));
-                        dir = (@"0:\" + input.Remove(0, 3));
+                        if (input.Length < 1)
+                        {
+                            response = "Input is too short. Please provide a valid directory path.";
+                            break;
+                        }
+
+                        string path = input.Remove(0, 3).Trim(); // Remove "cd " and trim any whitespace
+                        Directory.SetCurrentDirectory(@"0:\" + path);
+                        dir = @"0:\" + path;
                     }
                     catch (Exception ex)
                     {
